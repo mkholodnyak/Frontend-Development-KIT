@@ -1,0 +1,5 @@
+.idea
+deploy/
+node_modules
+bower_components
+src/app/vendor/
