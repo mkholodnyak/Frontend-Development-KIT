@@ -4,9 +4,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     bower = require('gulp-bower'),
     minifyHTML = require('gulp-minify-html'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
-    jpegtran = require('imagemin-jpegtran'),
     uglify = require('gulp-uglify'),
     runSequence = require('run-sequence');
 
@@ -30,7 +27,6 @@ gulp.task('html', function () {
 gulp.task('css', function () {
     gulp
         .src(config.src + config.app + 'css/**/*.scss')
-        //.pipe(sass())
         .pipe(sass().on('error', sass.logError))
         .pipe(csso())
         .pipe(gulp.dest(config.deploy + config.app + 'css/'))
@@ -48,12 +44,6 @@ gulp.task('javascript', function () {
 gulp.task('image', function () {
     gulp
         .src(config.src + config.app + 'images/**/*.*')
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant(), jpegtran()]
-        }))
-        .pipe(jpegtran({progressive: true})())
         .pipe(gulp.dest(config.deploy + config.app + 'images/'))
         .pipe(livereload());
 });
