@@ -63,7 +63,7 @@ gulp.task('bower', function () {
         .pipe(gulp.dest(config.deploy + config.app + 'vendor/'))
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['deploy'], function () {
     livereload.listen();
 
     var src = config.src;
